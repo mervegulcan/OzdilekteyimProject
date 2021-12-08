@@ -58,8 +58,26 @@ public class BasePage extends BaseTest{
 
     @Step("<key> id'li element <keyword> text değerini içerdiğni kontrol et")
     public void textContol(String key,String keyword){
-        Assert.assertFalse("Elementi içermiyo",appiumDriver.findElement(By.id(key)).getText().contains(keyword));
+        Assert.assertTrue("Beklenen değer karşılandı",appiumDriver.findElement(By.id(key)).getText().contains(keyword));
 
+    }
+    @Step("<key> ve <keyword>  değerine göre uygulamanın çalıştığı kontrol edilir")
+    public  void openApp(String key,String keyword){
+        String openAppCheck = appiumDriver.findElement(By.id(key)).getText();
+        Assert.assertEquals("uygulama doğru açıldı",keyword,openAppCheck);
+        logger.info("Özdilekteyim uygulaması doğru açıldı.");
+    }
+    @Step("<key> ve <keyword>  değerine göre alışveriş sayfasında olunduğu kontrol edilir")
+    public  void openShopping(String key,String keyword){
+        String openShoppingCheck = appiumDriver.findElement(By.xpath(key)).getText();
+        Assert.assertEquals("alışveriş sayfası doğrulandı",keyword,openShoppingCheck);
+        logger.info("Alışveriş sayfasında olduğu doğrulandı.");
+    }
+    @Step("<key> ve <keyword>  değerine göre kategoriler sayfası doğrulanır")
+    public  void checkCategory(String key,String keyword){
+        String checkCategory = appiumDriver.findElement(By.xpath(key)).getText();
+        Assert.assertEquals("alışveriş sayfası doğrulandı",keyword,checkCategory);
+        logger.info("Kategoriler sayfasında olduğu doğrulandı.");
     }
 
   }
